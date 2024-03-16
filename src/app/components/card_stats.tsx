@@ -1,6 +1,8 @@
 
 import {LinkIcon } from "lucide-react";
 import Link from "next/link";
+import { ResultResponse } from "../search/[id]/page";
+import { date, map } from "zod";
 
 export type TxStat = {
   return_code: number;
@@ -12,10 +14,16 @@ export type headerstat={
   chain_id: string;
 }
 
+export type Resultstat={
+  header : any;
+}
+
 export type ChainStats = {
   header : headerstat[];
   time: string;
   tx_stats: TxStat[];
+  result : any;
+  sumTx : any;
 };
 
 // Get Transaction
@@ -32,7 +40,7 @@ async function getStats(): Promise<ChainStats> {
   return await res.json();
 }
 
-async function getSumTx(): Promise<ChainStats> {
+async function getSumTx() {
   const res = await fetch(
     `${process.env.API3}/sumTx`,
     { next: { revalidate: 5 } } // Cache only 2 minutes
@@ -44,7 +52,7 @@ async function getSumTx(): Promise<ChainStats> {
 
   return await res.json();
 }
-async function getSumTxtransfer(): Promise<ChainStats> {
+async function getSumTxtransfer() {
   const res = await fetch(
     `${process.env.API3}/sumTxtransfer`,
     { next: { revalidate: 5 } } // Cache only 2 minutes
@@ -61,22 +69,6 @@ export default async function ChainStats() {
   let stats = await getStats();
   let sumTx = await getSumTx();
   let sumTxtransfer = await getSumTxtransfer();
-  console.log(sumTx)
-  // count valid txs
-//   let valid_tx_count = stats.tx_stats.reduce((acc, tx_stat: TxStat) => {
-//     if (tx_stat.return_code == 0 || tx_stat.return_code == 999) {
-//       return acc + tx_stat.tx_count;
-//     }
-//     return acc;
-//   }, 0);
-
-//   // Count invalid txs
-//   let invalid_tx_count = stats.tx_stats.reduce((acc, tx_stat: TxStat) => {
-//     if (tx_stat.return_code == 2 || tx_stat.return_code == 1) {
-//       return acc + tx_stat.tx_count;
-//     }
-//     return acc;
-//   }, 0);
 
   return (
     <>  
@@ -122,7 +114,15 @@ export default async function ChainStats() {
                       Total Transactions
                     </p>
                     <h1 className="flex justify-center gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white text-7xl">
-                      <span className="mt-2 text-4xl">{sumTx[0].count}</span>
+                      <span className="mt-2 text-4xl">{
+                        sumTx.map((data:any)=>{
+                          return (
+                            <>
+                              {data.count}
+                            </>
+                          )
+                        })
+                      }</span>
                     </h1>
                   </div>
                 </div>
@@ -134,7 +134,15 @@ export default async function ChainStats() {
                       Transfer Tx
                     </p>
                     <h1 className="flex justify-center gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white text-7xl">
-                      <span className="mt-2 text-4xl">{sumTxtransfer[0].count}</span>
+                      <span className="mt-2 text-4xl">{
+                        sumTxtransfer.map((data:any)=>{
+                          return (
+                            <>
+                              {data.count}
+                            </>
+                          )
+                        })
+                      }</span>
                     </h1>
                   </div>
                 </div>

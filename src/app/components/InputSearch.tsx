@@ -4,13 +4,15 @@ import { useRouter } from "next/navigation"
 import { useRef } from "react"
 
 export const InputSearch = () => {
-  const searchRef =  useRef()
+  const searchRef =  useRef<HTMLInputElement>(null);
   const router =  useRouter()
-  const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const keyword = searchRef.current.value
-      router.push(`/search/${keyword}`)
+      if (searchRef.current?.value) {
+        const keyword = searchRef.current.value;
+        router.push(`/search/${keyword}`);
+      }
   }
   };
   return (

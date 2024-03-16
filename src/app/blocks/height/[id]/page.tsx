@@ -117,9 +117,9 @@ export default async function Blocks({
                     <div className="grid xl:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
                       <div>
                         {
-                          dataBlockByHeight.tx_hashes.map(data  => {
+                          dataBlockByHeight.tx_hashes.map((data:any)  => {
                             return (
-                              <div className="gap-4 border ml-0 m-2 p-2  ">
+                              <div className="gap-4 border ml-0 m-2 p-2" key={data.hash_id}>
                               {data.tx_type}
                               <Link
                                 className="flex hover:text-primary dark:hover:text-darkmode-primary"

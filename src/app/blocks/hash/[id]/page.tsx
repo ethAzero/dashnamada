@@ -119,14 +119,13 @@ export default async function Blocks({
                     <div className="grid xl:grid-cols-1 md:grid-cols-1 sm:grid-cols-1">
                       <div>
                         {
-                          dataBlockByHash.tx_hashes.map(data  => {
+                          dataBlockByHash.tx_hashes.map((data:any) => {
                             return (
-                              <div className="gap-4 border ml-0 m-2 p-2  ">
+                              <div className="gap-4 border ml-0 m-2 p-2" key={data.hash_id}>
                               {data.tx_type}
                               <Link
                                 className="flex hover:text-primary dark:hover:text-darkmode-primary"
                                 href={`/transactions/${data.hash_id}`}
-                                key={data.hash_id}
                                 ><Link2Icon className="inline-flex mr-1"></Link2Icon>{data.hash_id}
                               </Link>
                               </div>

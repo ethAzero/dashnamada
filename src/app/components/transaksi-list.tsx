@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 
 export type TX = {
   datatransaksi : any
-
+  tx : any
 };
 
 
@@ -136,7 +136,7 @@ export function formatTxType(tx_type: string) {
     .replace(/[-_]+(.)/g, (_, c) => " " + c.toUpperCase());
 }
 
-export default function Transaksi(datatransaksi) {
+export default function Transaksi(datatransaksi:any) {
   return (
     <>
       {renderInternalTx(datatransaksi)}

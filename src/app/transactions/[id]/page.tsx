@@ -23,7 +23,7 @@ export type headerInfo ={
 
 export type ResultResponse = {
   block_id : string;
-  header : headerInfo[]
+  header : any;
   tx_type : string;
   wrapper_id: string;
   fee_amount_per_gas_unit: number;
@@ -75,6 +75,7 @@ export default async function SearchResult({
   
   const blockId = dataTx.block_id
   const dataBlockByTxId = await getResultBlock(blockId);
+  
   return (
     <>
     <InputSearch />
