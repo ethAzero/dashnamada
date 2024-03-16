@@ -124,6 +124,7 @@ export default async function Blocks({
                               <Link
                                 className="flex hover:text-primary dark:hover:text-darkmode-primary"
                                 href={`/transactions/${data.hash_id}`}
+                                key={data.hash_id}
                                 ><Link2Icon className="inline-flex mr-1"></Link2Icon>{data.hash_id}
                               </Link>
                               </div>
