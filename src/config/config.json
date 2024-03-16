@@ -1,20 +1,20 @@
 {
   "site": {
-    "title": "Nextplate",
-    "base_url": "https://nextplate.netlify.app",
+    "title": "Dash Namada | Kadieu",
+    "base_url": "https://dashnamada.kadieu.xyz",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
-    "logo_width": "150",
-    "logo_height": "27",
-    "logo_text": "Nextplate"
+    "favicon": "/images/namadafavicon.png",
+    "logo": "/images/lightnamada_logo.png",
+    "logo_darkmode": "/images/darknamada_logo.png",
+    "logo_width": "200",
+    "logo_height": "50",
+    "logo_text": "DashNamada"
   },
 
   "settings": {
-    "search": true,
-    "sticky_header": true,
+    "search": false,
+    "sticky_header": false,
     "theme_switcher": true,
     "default_theme": "system",
     "pagination": 2,
@@ -28,13 +28,13 @@
   },
 
   "navigation_button": {
-    "enable": true,
+    "enable": false,
     "label": "Get Started",
     "link": "https://github.com/zeon-studio/nextplate"
   },
 
   "disqus": {
-    "enable": true,
+    "enable": false,
     "shortname": "themefisher-template",
     "settings": {}
   },
