@@ -1,8 +1,6 @@
 
 import {LinkIcon } from "lucide-react";
 import Link from "next/link";
-import { ResultResponse } from "../search/[id]/page";
-import { date, map } from "zod";
 
 export type TxStat = {
   return_code: number;
@@ -10,7 +8,7 @@ export type TxStat = {
 };
 
 export type headerstat={
-  height : number;
+  height : string;
   chain_id: string;
 }
 
@@ -19,7 +17,7 @@ export type Resultstat={
 }
 
 export type ChainStats = {
-  header : headerstat[];
+  header : any;
   time: string;
   tx_stats: TxStat[];
   result : any;
@@ -27,9 +25,10 @@ export type ChainStats = {
 };
 
 // Get Transaction
+
 async function getStats(): Promise<ChainStats> {
   const res = await fetch(
-    `${process.env.API2}/header`,
+    `${process.env.API}/block/last`,
     { next: { revalidate: 5 } } // Cache only 2 minutes
   );
 
@@ -72,7 +71,7 @@ export default async function ChainStats() {
 
   return (
     <>  
-    <section className="section pt-14">
+    <section className="section p-14">
         <div className="container">
           <div className="row justify-center">
               <div className="grid gap-4 md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-4">
@@ -87,8 +86,8 @@ export default async function ChainStats() {
                       <span className="mt-2 text-4xl">
                       <Link
                         className="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                        href={`/blocks/height/${stats.result.header.height}`}
-                        ><LinkIcon></LinkIcon>{stats.result.header.height}
+                        href={`/blocks/height/${stats.header.height}`}
+                        ><LinkIcon></LinkIcon>{stats.header.height}
                       </Link>
                       </span>
                     </h1>
@@ -102,7 +101,7 @@ export default async function ChainStats() {
                       Chain Id
                     </p>
                     <h1 className="flex justify-center gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white text-7xl">
-                      <span className="mt-2 text-xl">{stats.result.header.chain_id}</span>
+                      <span className="mt-2 text-xl">{stats.header.chain_id}</span>
                     </h1>
                   </div>
                 </div>
