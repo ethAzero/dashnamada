@@ -52,7 +52,7 @@ export default async function Lastblocks() {
                 Latest Blocks
               </h3>
             </div>
-            <Suspense fallback={<p>Loading feed...</p>}>
+            <Suspense fallback={<p>Loading feed....</p>}>
               <div className="flow-root">
                 {blocks.map((data: any) => {
                   return (
