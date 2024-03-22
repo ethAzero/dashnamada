@@ -64,6 +64,19 @@ async function getSumTxtransfer() {
   return await res.json();
 }
 
+async function getBlocks(){
+  const res = await fetch(
+    `${process.env.API3}/blocks`,
+    { next: { revalidate: 5 } } // Cache only 2 minutes
+  );
+
+  if (!res.ok) {
+    throw Error("failed to fetch stats");
+  }
+
+  return await res.json();
+}
+
 export default async function ChainStats() {
   let stats = await getStats();
   let sumTx = await getSumTx();

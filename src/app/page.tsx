@@ -4,7 +4,7 @@ import { getListPage } from "@/lib/contentParser";
 import SeoMeta from "@/partials/SeoMeta";
 import ChainStats from "./components/card_stats";
 import { InputSearch } from "./components/InputSearch";
-import BlockAkhir from "./components/lastBlocks";
+import Lastblocks from "./components/lastblocks";
 
 
 export interface iInfo {
@@ -23,7 +23,7 @@ const Home = () => {
       <InputSearch/>
       <div>
       <ChainStats/>
-      <BlockAkhir/>
+      <Lastblocks/>
       </div>
     </>
   );
