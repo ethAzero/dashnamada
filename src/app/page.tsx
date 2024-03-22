@@ -4,7 +4,7 @@ import { getListPage } from "@/lib/contentParser";
 import SeoMeta from "@/partials/SeoMeta";
 import ChainStats from "./components/card_stats";
 import { InputSearch } from "./components/InputSearch";
-import Lastblocks from "./components/lastblocks";
+import Lastblocks from "./components/blocklast";
 
 
 export interface iInfo {
